@@ -1,57 +1,68 @@
-var cuadrito = document.getElementById("paint");
-cuadrito.addEventListener("mousemove", dibujar);
-cuadrito.addEventListener("mousedown", dibujar);
-var papel = cuadrito.getContext("2d");
-var color = "black";
-var width = 1;
-var fin;
+var square = document.getElementById("space");
+var paper = square.getContext("2d");
+square.addEventListener("mousemove", dibujoMouse);
+square.addEventListener("mousedown", dibujoMouse);
+
+dibujarLinea("black", 0, 0, square.width, 0, paper);
+dibujarLinea("black", square.width, 0, square.width, square.height, paper);
+dibujarLinea("black", square.width, square.height, 0, square.height, paper);
+dibujarLinea("black", 0, square.height, 0, 0, paper);
+
+var ini = 0
+var w=1;
 var x;
 var y;
 
-dibujarLinea("black", 0, 0, 300, 0, papel);
-dibujarLinea("black", 300, 0, 300, 300, papel);
-dibujarLinea("black", 300, 300, 0, 300, papel);
-dibujarLinea("black", 0, 300, 0, 0, papel);
-
-function dibujar(event) {
-    if (fin == 1) {
-        dibujarLinea(color, x, y, event.layerX, event.layerY, papel);
-    }
-    x = event.layerX;
-    y = event.layerY;
-    fin = event.buttons;
+function more ()
+{
+  w = w + 1;
+  console.log(w);
 }
 
-function dibujarLinea(color, xi, yi, xf, yf, lienzo) {
-    lienzo.beginPath();
-    lienzo.strokeStyle = color;
-    lienzo.lineWidth = width;
-    lienzo.moveTo(xi, yi);
-    lienzo.lineTo(xf, yf);
-    lienzo.stroke();
-    lienzo.closePath();
+function substract ()
+{
+  if (w > 1)
+  {
+    w = w - 1;
+    console.log(w);
+  }
+
 }
 
-function lineWidth() {
-    if (click = true) {
-        width = width + 1;
-    }
+function dibujarLinea (color, xi, yi, xf, yf, lienzo)
+{
+  lienzo.beginPath();
+  lienzo.strokeStyle = color;
+  lienzo.lineWidth = w;
+  lienzo.moveTo(xi, yi);
+  lienzo.lineTo(xf, yf);
+  lienzo.stroke();
+  lienzo.closePath();
 }
 
-function subLineWidth() {
-    if (click = true) {
-        width = width - 1;
-    }
-}
 
-function cambiarColor() {
-    if (click = true) {
-        color = "#AFA";
+function dibujoMouse (evento)
+{
+  var colorLinea = "blue"; 
+  if (evento.buttons == 1)
+  {
+    switch (ini)
+    {   
+      case 0:
+      dibujarLinea(colorLinea, evento.layerX, evento.layerY, evento.layerX - w / 2, evento.layerY, paper);
+      ini = ini + 1;
+      x = evento.layerX; 
+      y = evento.layerY;
+      break;
+      case 1:
+      dibujarLinea(colorLinea, x, y, evento.layerX, evento.layerY, paper);
+      x = evento.layerX; 
+      y = evento.layerY;
+      break; 
     }
-}
-
-function cambio() {
-    if (click = true) {
-        color = "black";
-    }
+  }
+  else
+  {
+    ini = 0;
+  }
 }
