@@ -10,7 +10,7 @@ var x;
 var y;
 var colorLinea;
 
-function wideLine() {
+function wideOfLine() {
     w=parseInt(line);
     console.log()
 }
