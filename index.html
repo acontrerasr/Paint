@@ -7,15 +7,20 @@
     <title>Online Paint</title>
     <style>
         body{
-            background-color:rgb(195, 252, 173)
+            background-color:rgb(190, 190, 190)
         }
     </style>
 </head>
 <body>
-    <h2>Online Paint <small>(Version 0.0001) --linesize changing capability</small></h2>
-    <canvas width="800" height="560" id="space"></canvas>
-    <input type="button" value =" +" id ="plus"/>
-    <input type="button" value =" - " id ="minus"/>
+    <h2>Online Paint <small>(Version 0.0001) --linesize changing capability</small></h2><hr style="height: 10px; border-style:hidden; border-color:firebrick; border-width: 5px;">
+    <canvas style="background-color: whitesmoke; border-style:groove; border-top-color: black" width="500" height="500" id="space"></canvas>
     <script src="program.js"></script>
+    <input type="button" value =" +" onclick="more()"/>
+    <input type="button" value =" - " onclick="substract()"/>
+    <input type="text" id="size"/>
+    <input type="button" value ="go" onclick="wideLine()"/>
+    <br>
+    <input style="background-color: black" type="button" onClick="cambio()" /> <br>
+    <input style="background-color: aquamarine" type="button" onclick="cambiarColor()" />
 </body>
 </html>
